@@ -54,6 +54,8 @@
       gap: 15px;
       margin-top: 20px;
       position: relative;
+      opacity: 1;
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     button {
@@ -120,7 +122,7 @@
   <div class="container fade-in" id="mainPage">
     <img src="https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg" alt="Фото Вани" id="vanyaPhoto">
     <h1>СуперВаня — эксперт по технике!</h1>
-    <div class="button-container">
+    <div class="button-container" id="buttonContainer">
       <button onclick="navigateTo('repairPage')">Написать по ремонту техники</button>
       <button onclick="navigateTo('askPage')">Просто спросить</button>
       <button onclick="navigateTo('buySellPage')">Хочу купить/продать</button>
@@ -154,18 +156,29 @@
 
   <script>
     function navigateTo(pageId) {
-      const buttonContainer = document.querySelector('.button-container');
-      buttonContainer.classList.add('slide-left');
+      const buttonContainer = document.getElementById('buttonContainer');
 
-      setTimeout(() => {
-        document.querySelectorAll('.container').forEach(container => {
-          container.classList.add('hidden');
-          container.style.transform = 'scale(1)'; // Сброс масштаба при каждом переходе
-        });
-        const targetPage = document.getElementById(pageId);
-        targetPage.classList.remove('hidden');
-        targetPage.classList.add('fade-in');
-      }, 600);
+      if (pageId === 'mainPage') {
+        buttonContainer.style.opacity = '0';
+        buttonContainer.style.transform = 'translateX(-500px)';
+        setTimeout(() => {
+          document.querySelectorAll('.container').forEach(container => {
+            container.classList.add('hidden');
+          });
+          document.getElementById(pageId).classList.remove('hidden');
+          buttonContainer.style.transform = 'translateX(0)';
+          buttonContainer.style.opacity = '1';
+        }, 300);
+      } else {
+        buttonContainer.classList.add('slide-left');
+        setTimeout(() => {
+          document.querySelectorAll('.container').forEach(container => {
+            container.classList.add('hidden');
+          });
+          document.getElementById(pageId).classList.remove('hidden');
+          buttonContainer.classList.remove('slide-left');
+        }, 600);
+      }
     }
 
     const backgroundUrl = 'https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/background.jpg';
