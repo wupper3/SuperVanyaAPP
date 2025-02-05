@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background: url('https://via.placeholder.com/800x600') no-repeat center center fixed;
+      background: url('https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/background.jpg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -22,7 +22,7 @@
       text-align: center;
       width: 90%;
       max-width: 400px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.6); /* Прозрачность 60% */
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -78,7 +78,7 @@
 </head>
 <body>
   <div class="container" id="mainPage">
-    <img src="https://via.placeholder.com/400x200" alt="Фото Вани" id="vanyaPhoto">
+    <img src="https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg" alt="Фото Вани" id="vanyaPhoto">
     <h1>СуперВаня — эксперт по технике!</h1>
     <div class="button-container">
       <button onclick="navigateTo('contactPage')">Написать мне</button>
@@ -114,8 +114,8 @@
     }
 
     // Настройка фона и фото Вани
-    const backgroundUrl = 'https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/background.jpg'; // Замените на свою ссылку для фона
-    const vanyaPhotoUrl = 'https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg/400x400'; // Замените на ссылку на фото Вани
+    const backgroundUrl = 'https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/background.jpg';
+    const vanyaPhotoUrl = 'https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg';
 
     document.body.style.backgroundImage = `url('${backgroundUrl}')`;
     document.getElementById('vanyaPhoto').src = vanyaPhotoUrl;
