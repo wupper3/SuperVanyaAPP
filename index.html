@@ -26,15 +26,16 @@
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease, transform 0.5s ease;
       opacity: 1;
       position: absolute;
-      transform: scale(1);
+      transform: translateX(0);
     }
 
     .hidden {
       opacity: 0;
       pointer-events: none;
+      transform: translateX(100%);
     }
 
     img {
@@ -53,9 +54,6 @@
       flex-direction: column;
       gap: 15px;
       margin-top: 20px;
-      position: relative;
-      opacity: 1;
-      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     button {
@@ -66,14 +64,12 @@
       color: white;
       font-size: 18px;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      position: relative;
-      z-index: 1;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
 
     button:hover {
       background: linear-gradient(135deg, #0072ff, #005bb5);
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     button:active {
@@ -98,28 +94,21 @@
       transform: scale(0.95);
     }
 
-    /* Анимация уезда влево */
-    .slide-left button {
-      animation: slideLeft 0.6s forwards;
+    .slide-out {
+      transform: translateX(-100%);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
-    @keyframes slideLeft {
-      0% { transform: translateX(0); opacity: 1; }
-      100% { transform: translateX(-500px); opacity: 0; }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .slide-in {
+      transform: translateX(0);
+      opacity: 1;
+      transition: transform 0.5s ease, opacity 0.5s ease;
     }
   </style>
 </head>
 <body>
-  <div class="container fade-in" id="mainPage">
+  <div class="container slide-in" id="mainPage">
     <img src="https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg" alt="Фото Вани" id="vanyaPhoto">
     <h1>СуперВаня — эксперт по технике!</h1>
     <div class="button-container" id="buttonContainer">
@@ -156,28 +145,21 @@
 
   <script>
     function navigateTo(pageId) {
-      const buttonContainer = document.getElementById('buttonContainer');
+      const current = document.querySelector('.container:not(.hidden)');
+      const next = document.getElementById(pageId);
 
-      if (pageId === 'mainPage') {
-        buttonContainer.style.opacity = '0';
-        buttonContainer.style.transform = 'translateX(-500px)';
+      if (current) {
+        current.classList.add('slide-out');
         setTimeout(() => {
-          document.querySelectorAll('.container').forEach(container => {
-            container.classList.add('hidden');
-          });
-          document.getElementById(pageId).classList.remove('hidden');
-          buttonContainer.style.transform = 'translateX(0)';
-          buttonContainer.style.opacity = '1';
-        }, 300);
+          current.classList.add('hidden');
+          current.classList.remove('slide-out');
+
+          next.classList.remove('hidden');
+          next.classList.add('slide-in');
+        }, 500);
       } else {
-        buttonContainer.classList.add('slide-left');
-        setTimeout(() => {
-          document.querySelectorAll('.container').forEach(container => {
-            container.classList.add('hidden');
-          });
-          document.getElementById(pageId).classList.remove('hidden');
-          buttonContainer.classList.remove('slide-left');
-        }, 600);
+        next.classList.remove('hidden');
+        next.classList.add('slide-in');
       }
     }
 
