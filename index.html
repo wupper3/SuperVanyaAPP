@@ -15,27 +15,16 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
     }
 
     .container {
       text-align: center;
-      width: 90%;
-      max-width: 400px;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      opacity: 1;
-      position: absolute;
-      transform: translateX(0);
-    }
-
-    .hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateX(100%);
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     img {
@@ -44,74 +33,52 @@
     }
 
     h1 {
-      margin: 10px 0;
       font-size: 24px;
+      margin: 10px 0;
       color: #333;
     }
 
     .button-container {
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
+      gap: 10px;
+      margin-top: 15px;
     }
 
     button {
       padding: 15px;
-      border: none;
-      border-radius: 25px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      background: #007BFF;
       color: white;
-      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
+      transition: background 0.3s ease;
     }
 
     button:hover {
-      background: linear-gradient(135deg, #0072ff, #005bb5);
-      transform: scale(1.05);
+      background: #0056b3;
     }
 
-    button:active {
-      transform: scale(0.95);
+    .hidden {
+      display: none;
     }
 
     .back-button {
-      margin-top: 10px;
-      padding: 7px;
-      font-size: 9px;
-      border-radius: 15px;
-      background: #e74c3c;
-      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 15px;
+      background: #dc3545;
     }
 
     .back-button:hover {
-      background: #c0392b;
-      transform: scale(1.05);
-    }
-
-    .back-button:active {
-      transform: scale(0.95);
-    }
-
-    .slide-out {
-      transform: translateX(-100%);
-      opacity: 0;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-    .slide-in {
-      transform: translateX(0);
-      opacity: 1;
-      transition: transform 0.5s ease, opacity 0.5s ease;
+      background: #b02a37;
     }
   </style>
 </head>
 <body>
-  <div class="container slide-in" id="mainPage">
-    <img src="https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg" alt="Фото Вани" id="vanyaPhoto">
+  <div class="container" id="mainPage">
+    <img src="https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg" alt="Фото Вани">
     <h1>СуперВаня — эксперт по технике!</h1>
-    <div class="button-container" id="buttonContainer">
+    <div class="button-container">
       <button onclick="navigateTo('repairPage')">Написать по ремонту техники</button>
       <button onclick="navigateTo('askPage')">Просто спросить</button>
       <button onclick="navigateTo('buySellPage')">Хочу купить/продать</button>
@@ -121,53 +88,31 @@
 
   <div class="container hidden" id="repairPage">
     <h1>Написать по ремонту техники</h1>
-    <p>Свяжитесь со мной по вопросам ремонта техники.</p>
     <button class="back-button" onclick="navigateTo('mainPage')">Назад</button>
   </div>
 
   <div class="container hidden" id="askPage">
     <h1>Просто спросить</h1>
-    <p>Задайте любой вопрос!</p>
     <button class="back-button" onclick="navigateTo('mainPage')">Назад</button>
   </div>
 
   <div class="container hidden" id="buySellPage">
     <h1>Купить/Продать</h1>
-    <p>Я помогу вам купить или продать технику.</p>
     <button class="back-button" onclick="navigateTo('mainPage')">Назад</button>
   </div>
 
   <div class="container hidden" id="locationPage">
     <h1>Как добраться</h1>
-    <p>Вы можете найти меня в центре Санкт-Петербурга.</p>
     <button class="back-button" onclick="navigateTo('mainPage')">Назад</button>
   </div>
 
   <script>
     function navigateTo(pageId) {
-      const current = document.querySelector('.container:not(.hidden)');
-      const next = document.getElementById(pageId);
-
-      if (current) {
-        current.classList.add('slide-out');
-        setTimeout(() => {
-          current.classList.add('hidden');
-          current.classList.remove('slide-out');
-
-          next.classList.remove('hidden');
-          next.classList.add('slide-in');
-        }, 500);
-      } else {
-        next.classList.remove('hidden');
-        next.classList.add('slide-in');
-      }
+      document.querySelectorAll('.container').forEach(container => {
+        container.classList.add('hidden');
+      });
+      document.getElementById(pageId).classList.remove('hidden');
     }
-
-    const backgroundUrl = 'https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/background.jpg';
-    const vanyaPhotoUrl = 'https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg';
-
-    document.body.style.backgroundImage = `url('${backgroundUrl}')`;
-    document.getElementById('vanyaPhoto').src = vanyaPhotoUrl;
   </script>
 </body>
 </html>
