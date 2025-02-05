@@ -2,131 +2,115 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>СуперВаня — Мини приложение</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СуперВаня</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
+    body, html {
       margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: background 0.5s ease;
+    }
+
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      background: white;
       padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 24px;
       color: #333;
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
     }
-    h1, h2 {
-      text-align: center;
-    }
-    section {
-      margin-bottom: 20px;
-    }
-    form label {
-      display: block;
-      margin-top: 10px;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-      margin-top: 5px;
-    }
-    form button, #contactMaster {
-      background: #0088cc;
-      color: #fff;
+
+    button {
+      padding: 15px;
       border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
+      border-radius: 25px;
+      background: #0088cc;
+      color: white;
+      font-size: 18px;
       cursor: pointer;
-      margin-top: 10px;
+      transition: background 0.3s ease;
     }
-    form button:hover, #contactMaster:hover {
-      background: #007ab8;
+
+    button:hover {
+      background: #0077b3;
     }
-    #orderResult {
-      margin-top: 10px;
-      font-weight: bold;
-      color: green;
+
+    .hidden {
+      display: none;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      background: #e74c3c;
+    }
+
+    .back-button:hover {
+      background: #c0392b;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>СуперВаня</h1>
-    <p>Добро пожаловать в мини-приложение канала!</p>
-
-    <section id="info">
-      <h2>Об авторе</h2>
-      <p>Здесь можно разместить информацию об авторе канала: краткая биография, опыт работы и уникальные особенности.</p>
-    </section>
-
-    <section id="services">
-      <h2>Услуги и товары</h2>
-      <ul>
-        <li>Услуга 1: подробное описание</li>
-        <li>Услуга 2: подробное описание</li>
-        <li>Товар 1: краткое описание</li>
-        <!-- Добавь свои услуги и товары -->
-      </ul>
-    </section>
-
-    <section id="order">
-      <h2>Форма заказа</h2>
-      <form id="orderForm">
-        <label for="name">Имя:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="contact">Контакт (телефон/почта):</label>
-        <input type="text" id="contact" name="contact" required>
-
-        <label for="message">Сообщение:</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-
-        <button type="submit">Отправить заказ</button>
-      </form>
-      <div id="orderResult"></div>
-    </section>
-
-    <section id="contact">
-      <h2>Написать мастеру</h2>
-      <button id="contactMaster">Написать мастеру</button>
-    </section>
+  <div class="container" id="mainPage">
+    <img src="https://via.placeholder.com/400x200" alt="Фото Вани" id="vanyaPhoto">
+    <h1>СуперВаня — эксперт по технике!</h1>
+    <div class="button-container">
+      <button onclick="navigateTo('contactPage')">Написать мне</button>
+      <button onclick="navigateTo('locationPage')">Где я в СПб</button>
+      <button onclick="navigateTo('techPage')">Подбор техники</button>
+    </div>
   </div>
 
-  <!-- Подключаем библиотеку Telegram Web Apps -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <div class="container hidden" id="contactPage">
+    <h1>Свяжитесь с Ваней!</h1>
+    <p>Напишите мне прямо в Telegram.</p>
+    <button class="back-button" onclick="navigateTo('mainPage')">Назад к Ванечке</button>
+  </div>
+
+  <div class="container hidden" id="locationPage">
+    <h1>Где я в СПб</h1>
+    <p>Вы можете найти меня в центре Санкт-Петербурга.</p>
+    <button class="back-button" onclick="navigateTo('mainPage')">Назад к Ванечке</button>
+  </div>
+
+  <div class="container hidden" id="techPage">
+    <h1>Подбор техники</h1>
+    <p>Я помогу вам выбрать подходящую технику для любых задач!</p>
+    <button class="back-button" onclick="navigateTo('mainPage')">Назад к Ванечке</button>
+  </div>
+
   <script>
-    // Инициализация Telegram Web App
-    const tg = window.Telegram.WebApp;
-
-    // Обработка отправки формы заказа
-    document.getElementById("orderForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Отменяем стандартное поведение формы
-
-      // Собираем данные формы
-      const name = document.getElementById("name").value;
-      const contact = document.getElementById("contact").value;
-      const message = document.getElementById("message").value;
-
-      // Здесь можно отправить данные на сервер через AJAX или fetch для обработки заказа.
-      // Для примера просто выводим сообщение:
-      document.getElementById("orderResult").innerText = 
-        "Заказ отправлен! Мы свяжемся с вами, " + name + ".";
-
-      // Если хочешь передать данные обратно боту через Web Apps API, можно использовать:
-      // tg.sendData(JSON.stringify({name, contact, message}));
-    });
-
-    // Обработка клика по кнопке "Написать мастеру"
-    document.getElementById("contactMaster").addEventListener("click", function() {
-      // Замените URL на ссылку Telegram мастера (например, его username)
-      window.open("https://t.me/username_master", "_blank");
-    });
+    function navigateTo(pageId) {
+      document.querySelectorAll('.container').forEach(container => {
+        container.classList.add('hidden');
+      });
+      document.getElementById(pageId).classList.remove('hidden');
+    }
   </script>
 </body>
 </html>
