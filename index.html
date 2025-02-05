@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>СуперВаня — Мини приложение</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    form label {
+      display: block;
+      margin-top: 10px;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-top: 5px;
+    }
+    form button, #contactMaster {
+      background: #0088cc;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    form button:hover, #contactMaster:hover {
+      background: #007ab8;
+    }
+    #orderResult {
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>СуперВаня</h1>
+    <p>Добро пожаловать в мини-приложение канала!</p>
+
+    <section id="info">
+      <h2>Об авторе</h2>
+      <p>Здесь можно разместить информацию об авторе канала: краткая биография, опыт работы и уникальные особенности.</p>
+    </section>
+
+    <section id="services">
+      <h2>Услуги и товары</h2>
+      <ul>
+        <li>Услуга 1: подробное описание</li>
+        <li>Услуга 2: подробное описание</li>
+        <li>Товар 1: краткое описание</li>
+        <!-- Добавь свои услуги и товары -->
+      </ul>
+    </section>
+
+    <section id="order">
+      <h2>Форма заказа</h2>
+      <form id="orderForm">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="contact">Контакт (телефон/почта):</label>
+        <input type="text" id="contact" name="contact" required>
+
+        <label for="message">Сообщение:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Отправить заказ</button>
+      </form>
+      <div id="orderResult"></div>
+    </section>
+
+    <section id="contact">
+      <h2>Написать мастеру</h2>
+      <button id="contactMaster">Написать мастеру</button>
+    </section>
+  </div>
+
+  <!-- Подключаем библиотеку Telegram Web Apps -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    // Инициализация Telegram Web App
+    const tg = window.Telegram.WebApp;
+
+    // Обработка отправки формы заказа
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Отменяем стандартное поведение формы
+
+      // Собираем данные формы
+      const name = document.getElementById("name").value;
+      const contact = document.getElementById("contact").value;
+      const message = document.getElementById("message").value;
+
+      // Здесь можно отправить данные на сервер через AJAX или fetch для обработки заказа.
+      // Для примера просто выводим сообщение:
+      document.getElementById("orderResult").innerText = 
+        "Заказ отправлен! Мы свяжемся с вами, " + name + ".";
+
+      // Если хочешь передать данные обратно боту через Web Apps API, можно использовать:
+      // tg.sendData(JSON.stringify({name, contact, message}));
+    });
+
+    // Обработка клика по кнопке "Написать мастеру"
+    document.getElementById("contactMaster").addEventListener("click", function() {
+      // Замените URL на ссылку Telegram мастера (например, его username)
+      window.open("https://t.me/username_master", "_blank");
+    });
+  </script>
+</body>
+</html>
