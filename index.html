@@ -26,15 +26,15 @@
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      transition: transform 0.5s ease, opacity 0.5s ease;
+      transition: opacity 0.5s ease;
       opacity: 1;
       position: absolute;
+      transform: scale(1);
     }
 
     .hidden {
       opacity: 0;
       pointer-events: none;
-      transform: scale(0.9);
     }
 
     img {
@@ -160,10 +160,11 @@
       setTimeout(() => {
         document.querySelectorAll('.container').forEach(container => {
           container.classList.add('hidden');
+          container.style.transform = 'scale(1)'; // Сброс масштаба при каждом переходе
         });
-        document.getElementById(pageId).classList.remove('hidden');
-        document.getElementById(pageId).classList.add('fade-in');
-        buttonContainer.classList.remove('slide-left');
+        const targetPage = document.getElementById(pageId);
+        targetPage.classList.remove('hidden');
+        targetPage.classList.add('fade-in');
       }, 600);
     }
 
