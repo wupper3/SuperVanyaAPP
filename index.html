@@ -9,7 +9,8 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background: #f4f4f9;
+      background: url('https://via.placeholder.com/800x600') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,7 +22,7 @@
       text-align: center;
       width: 90%;
       max-width: 400px;
-      background: white;
+      background: rgba(255, 255, 255, 0.9);
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -111,6 +112,13 @@
       });
       document.getElementById(pageId).classList.remove('hidden');
     }
+
+    // Настройка фона и фото Вани
+    const backgroundUrl = 'https://via.placeholder.com/800x600'; // Замените на свою ссылку для фона
+    const vanyaPhotoUrl = 'https://via.placeholder.com/400x400'; // Замените на ссылку на фото Вани
+
+    document.body.style.backgroundImage = `url('${backgroundUrl}')`;
+    document.getElementById('vanyaPhoto').src = vanyaPhotoUrl;
   </script>
 </body>
 </html>
