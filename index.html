@@ -103,6 +103,21 @@
   </style>
 </head>
 <body>
+  <div class="container hidden" id="repairPage">
+    <h1>🔧 Написать по ремонту техники</h1>
+    <button class="back-button" onclick="navigateTo('mainPage')">⬅ Назад</button>
+  </div>
+
+  <div class="container hidden" id="askPage">
+    <h1>❓ Просто спросить</h1>
+    <button class="back-button" onclick="navigateTo('mainPage')">⬅ Назад</button>
+  </div>
+
+  <div class="container hidden" id="buySellPage">
+    <h1>💰 Хочу купить/продать</h1>
+    <button class="back-button" onclick="navigateTo('mainPage')">⬅ Назад</button>
+  </div>
+
   <div class="container" id="mainPage">
     <img src="https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg" alt="Фото Вани">
     <h1>Привет! Я — СуперВаня</h1>
@@ -116,20 +131,6 @@
       <button onclick="navigateTo('buySellPage')">💰 Хочу купить/продать</button>
       <button onclick="navigateTo('locationPage')">📍 СуперВаня на карте</button>
     </div>
-  </div>
-
-  <div class="container hidden" id="locationPage">
-    <h1>Санкт-Петербург, ул. Восстания, 4</h1>
-    <p>📍 1 минута от 🚇 метро Площадь Восстания</p>
-    <p>Моя студия ремонта — это не просто сервис, а уютное место, где технике дают вторую жизнь. Я работаю по предварительной записи, чтобы уделить максимум внимания каждому клиенту и решить проблему без лишней суеты.</p>
-    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A1aebf1f2a9fba9b5a56fd9a620cb2f6b2f95bda17d5756e04e228203658f4775&amp;source=constructor"></iframe>
-    <a href="https://yandex.ru/maps/?rtext=~59.932773,30.365891&rtt=auto" target="_blank">
-      <button>🛣️ Построить маршрут</button>
-    </a>
-    <p>⏳ Не люблю ждать и не заставляю ждать других — у меня всё чётко и по делу.</p>
-    <p>🚗 Для тех, кто на машине: бесплатная парковка во дворе (первые 60 минут).</p>
-    <p>☕ Чай и кофе не завезли. Зато у меня отличная атмосфера, дружеское общение и самое главное — качественное решение любых проблем с гаджетами.</p>
-    <button class="back-button" onclick="navigateTo('mainPage')">⬅ Назад</button>
   </div>
 
   <script>
