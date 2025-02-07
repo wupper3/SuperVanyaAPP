@@ -99,25 +99,11 @@
       border: none;
       border-radius: 10px;
       margin-top: 10px;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <div class="container hidden" id="repairPage">
-    <h1>🔧 Написать по ремонту техники</h1>
-    <button class="back-button" onclick="navigateTo('mainPage')">⬅ Назад</button>
-  </div>
-
-  <div class="container hidden" id="askPage">
-    <h1>❓ Просто спросить</h1>
-    <button class="back-button" onclick="navigateTo('mainPage')">⬅ Назад</button>
-  </div>
-
-  <div class="container hidden" id="buySellPage">
-    <h1>💰 Хочу купить/продать</h1>
-    <button class="back-button" onclick="navigateTo('mainPage')">⬅ Назад</button>
-  </div>
-
   <div class="container" id="mainPage">
     <img src="https://raw.githubusercontent.com/wupper3/SuperVanyaAPP/main/vanya.jpg" alt="Фото Вани">
     <h1>Привет! Я — СуперВаня</h1>
@@ -129,8 +115,18 @@
       <button onclick="navigateTo('repairPage')">🔧 Написать по ремонту техники</button>
       <button onclick="navigateTo('askPage')">❓ Просто спросить</button>
       <button onclick="navigateTo('buySellPage')">💰 Хочу купить/продать</button>
-      <button onclick="navigateTo('locationPage')">📍 СуперВаня на карте</button>
+      <button onclick="navigateTo('locationPage')">📍 Как добраться</button>
     </div>
+  </div>
+
+  <div class="container hidden" id="locationPage">
+    <h1>📍 Как добраться</h1>
+    <p>Санкт-Петербург, ул. Восстания, 4</p>
+    <iframe src="https://yandex.ru/map-widget/v1/-/CHe3YXJe"></iframe>
+    <a href="https://yandex.ru/maps/-/CHe3YXJe" target="_blank">
+      <button>🛣️ Построить маршрут</button>
+    </a>
+    <button class="back-button" onclick="navigateTo('mainPage')">⬅ Назад</button>
   </div>
 
   <script>
