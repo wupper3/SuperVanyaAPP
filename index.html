@@ -29,7 +29,7 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-        img {
+    img {
       width: 150px;
       height: 150px;
       border-radius: 50%;
@@ -41,8 +41,22 @@
       background-origin: border-box;
       background-clip: padding-box, border-box;
       box-shadow: 0 0 0 4px white;
+      animation: gradient-rotate 3s linear infinite;
     }
-
+    
+    /* Анимация градиента */
+    @keyframes gradient-rotate {
+      0% {
+        background: linear-gradient(0deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      }
+      50% {
+        background: linear-gradient(180deg, #bc1888, #cc2366, #dc2743, #e6683c, #f09433);
+      }
+      100% {
+        background: linear-gradient(360deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      }
+    }
+    
     h1 {
       font-size: 22px;
       margin-bottom: 10px;
